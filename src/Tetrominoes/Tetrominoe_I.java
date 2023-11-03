@@ -10,13 +10,21 @@ public class Tetrominoe_I extends Tetrominoe {
         □ □ □ □   ■ □ □ □   □ □ □ □   ■ □ □ □
         □ □ □ □   ■ □ □ □   □ □ □ □   ■ □ □ □
      */
-    private final byte[][] tetrominoe_I_spawnShape = {
-            {1, 1, 1, 1},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0},
-            {0, 0, 0, 0}
-    };
-    public Tetrominoe_I (String tetroColor) {
-        super (tetroColor);
+    public Tetrominoe_I(String tetroColor) {
+        super(tetroColor);
+        int[][] aux = { { 0, 0 }, { 0, 1 }, { 0, 2 }, { 0, 3 } };
+        vectPosition = aux;
     }
-}
+
+    @Override
+    public int[][] rotate(int numrotate) {
+        int[][] aux = new int[4][2];
+        System.arraycopy(vectPosition, 0, aux, 0, vectPosition.length);
+        for (int i = 0; i < 4; ++i) {
+            aux[i][0] += aux[i][1];
+            aux[i][1] = aux[i][0] - aux[i][1];
+            aux[i][0] = aux[i][0] - aux[i][1];
+        }
+        return aux;
+    }
+} 

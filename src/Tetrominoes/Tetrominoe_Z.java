@@ -9,12 +9,24 @@ public class Tetrominoe_Z extends Tetrominoe {
         □ ■ ■   ■ ■ □   □ ■ ■   ■ ■ □
         □ □ □   ■ □ □   □ □ □   ■ □ □
     */
-    private static final byte[][] tetrominoe_Z_spawnShape = {
-            {1, 1, 0},
-            {0, 1, 1},
-            {0, 0, 0},
-    };
-    public Tetrominoe_Z (String tetroColor) {
-        super (tetroColor);
+    public Tetrominoe_Z(String tetroColor) {
+        super(tetroColor);
+
+        int[][] aux = { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 1, 2 } };
+        vectPosition = aux;
+    }
+
+    @Override
+    public int[][] rotate(int numrotate) {
+        int[][][] r = { { { 2, 0}, { 1, -1 }, { 0, 0 }, { -1, -1} },
+                { { -2, 0}, { -1, 1 }, { 0, 0 }, { 1, 1} }};
+
+        int[][] aux = new int[4][2];
+        System.arraycopy(vectPosition, 0, aux, 0, vectPosition.length);
+        for (int i = 0; i < 4; ++i) {
+            aux[i][0] += r[numrotate % 2][i][0];
+            aux[i][1] += r[numrotate % 2][i][1];
+        }
+        return aux;
     }
 }

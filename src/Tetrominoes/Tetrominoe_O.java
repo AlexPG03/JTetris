@@ -8,11 +8,18 @@ public class Tetrominoe_O extends Tetrominoe {
         ■ ■   ■ ■   ■ ■   ■ ■
         ■ ■   ■ ■   ■ ■   ■ ■
     */
-    private static final byte[][] tetrominoe_O_spawnShape = {
-            {1, 1},
-            {1, 1},
-    };
     public Tetrominoe_O(String tetroColor) {
         super(tetroColor);
+
+        int[][] aux = { { 0, 0 }, { 0, 1 }, { 1, 0 }, { 1, 1 } };
+        vectPosition = aux;
     }
+
+    @Override
+    public int[][] rotate(int numrotate) {
+        int[][] aux = new int[4][2];
+        System.arraycopy(vectPosition, 0, aux, 0, vectPosition.length);
+        return aux;
+    }
+    
 }
